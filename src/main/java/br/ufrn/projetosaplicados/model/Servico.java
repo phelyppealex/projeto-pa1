@@ -8,8 +8,8 @@ import jakarta.persistence.Id;
 @Entity
 public class Servico {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
 
     
 }

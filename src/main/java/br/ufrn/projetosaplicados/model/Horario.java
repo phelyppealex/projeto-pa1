@@ -10,8 +10,8 @@ import lombok.Data;
 @Entity
 public class Horario {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.UUID)
+    private String id;
     private int horas;
     private int minutos;
 }
