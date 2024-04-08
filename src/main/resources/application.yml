@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: gestor-tarefas-rest
+  datasource:
+    url: jdbc:postgresql://localhost:5432/gestao_tarefas
+    username: postgres
+    password: 1412
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    generate-ddl: true
+    show-sql: true

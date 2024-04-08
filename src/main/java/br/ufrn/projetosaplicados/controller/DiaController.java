@@ -45,6 +45,4 @@ public class DiaController {
     public void updateDia(@RequestBody Dia dia){
         this.service.update(dia);
     }
-    
-    
 }
