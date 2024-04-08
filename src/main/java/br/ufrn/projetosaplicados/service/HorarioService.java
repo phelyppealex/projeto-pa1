@@ -1,10 +1,7 @@
 package br.ufrn.projetosaplicados.service;
-
 import java.util.List;
 import java.util.Optional;
-
 import org.springframework.stereotype.Service;
-
 import br.ufrn.projetosaplicados.model.Horario;
 import br.ufrn.projetosaplicados.repository.HorarioRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -41,5 +38,11 @@ public class HorarioService {
 
     public void delete(Horario horario){
         this.repository.delete(horario);
+    }
+
+    public void update(Horario horario){
+        var temp = findById(horario.getId());
+        delete(temp);
+        save(horario);
     }
 }
