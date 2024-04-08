@@ -23,6 +23,7 @@ public class ServicoController {
         List<Servico.DtoResponse> servicos = this.service.findAll().stream().map(
             service -> Servico.DtoResponse.convertToDto(service, mapper)
         ).toList();
+
         return servicos;
     }
 

@@ -1,8 +1,8 @@
 spring:
   application:
-    name: gestor-tarefas-rest
+    name: projetosaplicados
   datasource:
-    url: jdbc:postgresql://localhost:5432/gestao_tarefas
+    url: jdbc:postgresql://localhost:5432/barbearia
     username: postgres
     password: 1412
   jpa:
