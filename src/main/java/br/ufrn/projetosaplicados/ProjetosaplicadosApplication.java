@@ -8,8 +8,8 @@ import org.springframework.context.annotation.Bean;
 @SpringBootApplication
 public class ProjetosaplicadosApplication {
 
-	@Bean
-	public ModelMapper mapper(){
+    @Bean
+    ModelMapper mapper(){
 		return new ModelMapper();
 	}
 
