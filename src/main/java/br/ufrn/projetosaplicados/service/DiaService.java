@@ -2,7 +2,7 @@ package br.ufrn.projetosaplicados.service;
 import java.util.List;
 import java.util.Optional;
 import org.springframework.stereotype.Service;
-import br.ufrn.projetosaplicados.model.Dia;
+import br.ufrn.projetosaplicados.model.DiaSemana;
 import br.ufrn.projetosaplicados.repository.DiaRepository;
 import jakarta.persistence.EntityNotFoundException;
 
@@ -14,7 +14,7 @@ public class DiaService {
         this.repository = repository;
     }
 
-    public Dia save(Dia dia){
+    public DiaSemana save(DiaSemana dia){
         return this.repository.save(dia);
     }
 
@@ -23,12 +23,12 @@ public class DiaService {
         this.repository.deleteById(id);
     }
 
-    public void delete(Dia dia){
+    public void delete(DiaSemana dia){
         this.repository.delete(dia);
     }
 
-    public Dia findByID(String id){
-        Optional<Dia> dia = this.repository.findById(id);
+    public DiaSemana findByID(String id){
+        Optional<DiaSemana> dia = this.repository.findById(id);
 
         if(dia.isPresent())
             return dia.get();
@@ -36,11 +36,11 @@ public class DiaService {
         throw new EntityNotFoundException();
     }
 
-    public List<Dia> findAll(){
+    public List<DiaSemana> findAll(){
         return this.repository.findAll();
     }
 
-    public void update(Dia dia){
+    public void update(DiaSemana dia){
         var temp = findByID(dia.getId());
         delete(temp);
         save(dia);
