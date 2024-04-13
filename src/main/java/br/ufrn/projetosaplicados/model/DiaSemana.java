@@ -1,9 +1,12 @@
 package br.ufrn.projetosaplicados.model;
+import java.util.List;
+
 import org.modelmapper.ModelMapper;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import lombok.Data;
 
 @Data
@@ -15,6 +18,9 @@ public class DiaSemana {
     private int dia;
     private int mes;
     private int ano;
+
+    @OneToMany
+    List<Horario> horario;
 
     public static class DtoRequest {
         private int dia;
