@@ -16,12 +16,14 @@ public class DiaSemana {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     private String dia;
+    private boolean disponivel;
 
     @OneToMany
-    List<Horario> horario;
+    List<Horario> horarios;
 
     public static class DtoRequest {
         private String dia;
+        private boolean disponivel;
         
         public static DiaSemana convertToEntity(DiaSemana.DtoRequest dto,  ModelMapper mapper){
             return mapper.map(dto, DiaSemana.class);
@@ -31,6 +33,7 @@ public class DiaSemana {
     public static class DtoResponse {
         private String id;
         private String dia;
+        private boolean disponivel;
         
         public static DiaSemana.DtoResponse convertToDto(DiaSemana dia,  ModelMapper mapper){
             return mapper.map(dia, DiaSemana.DtoResponse.class);

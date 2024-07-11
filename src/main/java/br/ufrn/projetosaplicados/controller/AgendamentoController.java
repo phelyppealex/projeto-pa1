@@ -4,6 +4,8 @@ import org.springframework.web.bind.annotation.RestController;
 import br.ufrn.projetosaplicados.model.Agendamento;
 import br.ufrn.projetosaplicados.service.AgendamentoService;
 import java.util.List;
+
+import org.modelmapper.ModelMapper;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,20 +17,24 @@ import org.springframework.web.bind.annotation.RequestBody;
 @RequestMapping("/agendamento/")
 public class AgendamentoController {
     private AgendamentoService service;
+    private ModelMapper mapper;
 
-    public AgendamentoController(AgendamentoService service){
+    public AgendamentoController(AgendamentoService service, ModelMapper mapper){
+        this.mapper = mapper;
         this.service = service;
     }
 
     @GetMapping()
-    public List<Agendamento> findAllAgendamentos() {
-        List<Agendamento> a = this.service.findAll();
+    public List<Agendamento.DtoResponse> findAllAgendamentos() {
+        List<Agendamento.DtoResponse> a = this.service.findAll().stream().map(
+            agendamento -> Agendamento.DtoResponse.convertToDto(agendamento, mapper)
+        ).toList();
         return a;
     }
 
     @PostMapping
-    public void saveAgendamento(@RequestBody Agendamento a) {
-        Agendamento agendamento = a;
+    public void saveAgendamento(@RequestBody Agendamento.DtoRequest a) {
+        Agendamento agendamento = Agendamento.DtoRequest.convertToEntity(a, mapper);
         this.service.save(agendamento);
     }
     

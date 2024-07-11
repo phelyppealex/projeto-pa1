@@ -1,4 +1,6 @@
 package br.ufrn.projetosaplicados.model;
+import org.modelmapper.ModelMapper;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,4 +25,24 @@ public class Agendamento {
     @OneToOne
     Servico servico;
     
+    public static class DtoRequest{
+        DiaSemana dia;
+        Horario horario;
+        Servico servico;
+
+        public static Agendamento convertToEntity(Agendamento.DtoRequest dto, ModelMapper mapper){
+            return mapper.map(dto, Agendamento.class);
+        }
+    }
+
+    public static class DtoResponse{
+        String id;
+        DiaSemana dia;
+        Horario horario;
+        Servico servico;
+
+        public static Agendamento.DtoResponse convertToDto(Agendamento agendamento, ModelMapper mapper){
+            return mapper.map(agendamento, Agendamento.DtoResponse.class);
+        }
+    }
 }
