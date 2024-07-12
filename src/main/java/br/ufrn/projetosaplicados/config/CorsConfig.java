@@ -16,7 +16,7 @@ public class CorsConfig {
                     .allowedOrigins("*")
                     .allowedHeaders("*")
                     .allowedMethods("GET", "POST", "PUT", "DELETE")
-                    .allowCredentials(false)
+                    //.allowCredentials(false)
                     .maxAge(3600);
             }
         };
