@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/dia/")
+@RequestMapping("/dia")
 public class DiaController {
 
     private DiaService service;
@@ -36,12 +36,12 @@ public class DiaController {
         this.service.save(dia);
     }
     
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteDia(@PathVariable String id){
         this.service.deleteById(id);
     }
     
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateDia(@RequestBody DiaSemana dia){
         this.service.update(dia);
     }

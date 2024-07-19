@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
-@RequestMapping("/agendamento/")
+@RequestMapping("/agendamento")
 public class AgendamentoController {
     private AgendamentoService service;
     private ModelMapper mapper;
@@ -38,12 +38,12 @@ public class AgendamentoController {
         this.service.save(agendamento);
     }
     
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteAgendamento(@PathVariable String id){
         this.service.deleteById(id);
     }
     
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateHorario(@RequestBody Agendamento a){
         this.service.update(a);
     }

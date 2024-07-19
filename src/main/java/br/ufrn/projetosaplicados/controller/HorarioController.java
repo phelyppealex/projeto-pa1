@@ -6,7 +6,7 @@ import br.ufrn.projetosaplicados.model.Horario;
 import br.ufrn.projetosaplicados.service.HorarioService;
 
 @RestController
-@RequestMapping("/horario/")
+@RequestMapping("/horario")
 public class HorarioController {
 
     private ModelMapper mapper;
@@ -31,12 +31,12 @@ public class HorarioController {
         this.service.save(horario);
     }
     
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteHorario(@PathVariable String id){
         this.service.deleteById(id);
     }
     
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateHorario(@RequestBody Horario horario){
         this.service.update(horario);
     }

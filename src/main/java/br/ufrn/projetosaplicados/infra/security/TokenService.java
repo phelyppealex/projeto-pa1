@@ -24,7 +24,7 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(segredo);
 
             String token = JWT.create()
-                .withIssuer("PROJETO-PA1")
+                .withIssuer("projetosaplicados")
                 .withSubject(usuario.getEmail())
                 .withExpiresAt(this.generateExpirationDate())
                 .sign(algorithm);
@@ -39,8 +39,10 @@ public class TokenService {
             Algorithm algorithm = Algorithm.HMAC256(segredo);
 
             return JWT.require(algorithm)
-                    .withIssuer("PROJETO-PA1")
-                    .build().verify(token).getSubject();
+                    .withIssuer("projetosaplicados")
+                    .build()
+                    .verify(token)
+                    .getSubject();
         } catch (JWTVerificationException e) {
             return null;
         }

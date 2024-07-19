@@ -7,7 +7,7 @@ import br.ufrn.projetosaplicados.service.ServicoService;
 
 
 @RestController
-@RequestMapping("/servico/")
+@RequestMapping("/servico")
 public class ServicoController {
     
     private ModelMapper mapper;
@@ -33,12 +33,12 @@ public class ServicoController {
         this.service.save(servico);
     }
 
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteServico(@PathVariable String id){
         this.service.deleteById(id);
     }
     
-    @PutMapping("{id}")
+    @PutMapping("/{id}")
     public void updateDia(@RequestBody Servico servico){
         this.service.update(servico);
     }
