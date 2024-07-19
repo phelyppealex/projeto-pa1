@@ -49,7 +49,7 @@ public class AuthController {
         Usuario newUser = new Usuario(
             body.name(),
             body.email(),
-            body.password(),
+            passwordEncoder.encode(body.password()),
             body.role()
         );
         this.repository.save(newUser);
