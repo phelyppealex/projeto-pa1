@@ -29,19 +29,21 @@ public class SecurityFilter extends OncePerRequestFilter{
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException{
         var token = this.recoverToken(request);
         var login = tokenService.validateToken(token);
-        
+
         if(login != null){
             Usuario u = usuarioRepository.findByEmail(login).orElseThrow(() -> new RuntimeException("Usuario nao encontrado"));
-            var authorities = Collections.singletonList(new SimpleGrantedAuthority("ROLE_USER"));
+            var authorities = u.getAuthorities();
             var authentication = new UsernamePasswordAuthenticationToken(u, null, authorities);
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
+
+
         filterChain.doFilter(request, response);
     }
 
     private String recoverToken(HttpServletRequest request){
         var authHeader = request.getHeader("Authorization");
         if(authHeader == null) return null;
-        return authHeader.replace("Bearer", "");
+        return authHeader.replace("Bearer ", "");
     }
 }

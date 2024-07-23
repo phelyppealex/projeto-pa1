@@ -15,6 +15,7 @@ public class Horario {
     private int horas;
     private int minutos;
 
+    @Data
     public static class DtoRequest {
         private int horas;
         private int minutos;

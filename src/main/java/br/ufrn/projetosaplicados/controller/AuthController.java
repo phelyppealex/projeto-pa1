@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.ufrn.projetosaplicados.infra.security.LoginRequestDTO;
-import br.ufrn.projetosaplicados.infra.security.RegisterRequestDTO;
-import br.ufrn.projetosaplicados.infra.security.ResponseDTO;
 import br.ufrn.projetosaplicados.infra.security.TokenService;
+import br.ufrn.projetosaplicados.model.LoginRequestDTO;
+import br.ufrn.projetosaplicados.model.RegisterRequestDTO;
+import br.ufrn.projetosaplicados.model.ResponseDTO;
 import br.ufrn.projetosaplicados.model.Usuario;
 import br.ufrn.projetosaplicados.repository.UsuarioRepository;
 import lombok.RequiredArgsConstructor;
@@ -21,6 +21,8 @@ import lombok.RequiredArgsConstructor;
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
+
+    
     private final UsuarioRepository repository;
     private final PasswordEncoder passwordEncoder;
     private final TokenService tokenService;
