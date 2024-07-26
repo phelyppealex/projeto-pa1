@@ -1,5 +1,6 @@
 package br.ufrn.projetosaplicados.model;
 import org.modelmapper.ModelMapper;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,7 +17,6 @@ public class Horario {
 
     @Data
     public static class DtoRequest {
-        private String id;
         private String hora;
         
         public static Horario convertToEntity(Horario.DtoRequest dto,  ModelMapper mapper){

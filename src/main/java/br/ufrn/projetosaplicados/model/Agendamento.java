@@ -27,7 +27,6 @@ public class Agendamento {
     
     @Data
     public static class DtoRequest{
-        String id;
         DiaSemana dia;
         Horario horario;
         Servico servico;

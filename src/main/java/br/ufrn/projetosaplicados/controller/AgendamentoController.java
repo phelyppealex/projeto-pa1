@@ -1,8 +1,4 @@
 package br.ufrn.projetosaplicados.controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import br.ufrn.projetosaplicados.model.Agendamento;
-import br.ufrn.projetosaplicados.service.AgendamentoService;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
@@ -12,6 +8,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.ufrn.projetosaplicados.model.Agendamento;
+import br.ufrn.projetosaplicados.service.AgendamentoService;
 
 @RestController
 @RequestMapping("/agendamento")
@@ -43,7 +44,7 @@ public class AgendamentoController {
         this.service.deleteById(id);
     }
     
-    @PutMapping("/{id}")
+    @PutMapping
     public void updateHorario(@RequestBody Agendamento a){
         this.service.update(a);
     }

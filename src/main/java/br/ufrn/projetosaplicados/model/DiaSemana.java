@@ -2,11 +2,13 @@ package br.ufrn.projetosaplicados.model;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import lombok.Data;
 
 @Data
@@ -18,12 +20,11 @@ public class DiaSemana {
     private String dia;
     private boolean disponivel;
 
-    @OneToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     List<Horario> horarios;
 
     @Data
     public static class DtoRequest {
-        private String id;
         private String dia;
         private boolean disponivel;
         

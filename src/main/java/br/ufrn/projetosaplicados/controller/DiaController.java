@@ -1,14 +1,19 @@
 package br.ufrn.projetosaplicados.controller;
 import java.util.List;
+
 import org.modelmapper.ModelMapper;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
 import br.ufrn.projetosaplicados.model.DiaSemana;
 import br.ufrn.projetosaplicados.service.DiaService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @RequestMapping("/dia")
@@ -30,6 +35,12 @@ public class DiaController {
         return dia;
     }
 
+    @GetMapping("/{id}")
+    public DiaSemana findById(@PathVariable String id) {
+        return this.service.findByID(id);
+    }
+    
+
     @PostMapping
     public void saveDia(@RequestBody DiaSemana.DtoRequest diaDto) {
         DiaSemana dia = DiaSemana.DtoRequest.convertToEntity(diaDto, mapper);
@@ -41,7 +52,7 @@ public class DiaController {
         this.service.deleteById(id);
     }
     
-    @PutMapping("/{id}")
+    @PutMapping
     public void updateDia(@RequestBody DiaSemana dia){
         this.service.update(dia);
     }

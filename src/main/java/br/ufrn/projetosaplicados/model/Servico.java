@@ -2,6 +2,7 @@ package br.ufrn.projetosaplicados.model;
 import java.util.List;
 
 import org.modelmapper.ModelMapper;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -23,7 +24,6 @@ public class Servico {
 
     @Data
     public static class DtoRequest {
-        private String id;
         private String nome;
         private double preco;
         

@@ -22,7 +22,7 @@ public class HorarioService {
         Optional<Horario> horario = this.repository.findById(id);
 
         if(horario.isPresent())
-            return this.findById(id);
+            return horario.get();
         
         throw new EntityNotFoundException();
     }

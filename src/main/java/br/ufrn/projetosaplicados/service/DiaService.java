@@ -1,7 +1,9 @@
 package br.ufrn.projetosaplicados.service;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
+
 import br.ufrn.projetosaplicados.model.DiaSemana;
 import br.ufrn.projetosaplicados.repository.DiaRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -41,8 +43,8 @@ public class DiaService {
     }
 
     public void update(DiaSemana dia){
-        var temp = findByID(dia.getId());
-        delete(temp);
+        //var temp = findByID(dia.getId());
+        //delete(temp);
         save(dia);
     }
 }
