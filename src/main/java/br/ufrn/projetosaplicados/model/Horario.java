@@ -12,23 +12,22 @@ public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    private int horas;
-    private int minutos;
+    private String hora;
 
     @Data
     public static class DtoRequest {
-        private int horas;
-        private int minutos;
+        private String id;
+        private String hora;
         
         public static Horario convertToEntity(Horario.DtoRequest dto,  ModelMapper mapper){
             return mapper.map(dto, Horario.class);
         }
     }
 
+    @Data
     public static class DtoResponse {
         private String id;
-        private int horas;
-        private int minutos;
+        private String hora;
         
         public static Horario.DtoResponse convertToDto(Horario horario,  ModelMapper mapper){
             return mapper.map(horario, Horario.DtoResponse.class);

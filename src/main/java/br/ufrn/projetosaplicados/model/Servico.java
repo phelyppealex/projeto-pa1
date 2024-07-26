@@ -21,7 +21,9 @@ public class Servico {
     @OneToMany
     List<DiaSemana> dias;
 
+    @Data
     public static class DtoRequest {
+        private String id;
         private String nome;
         private double preco;
         
@@ -30,6 +32,7 @@ public class Servico {
         }
     }
 
+    @Data
     public static class DtoResponse {
         private String id;
         private String nome;

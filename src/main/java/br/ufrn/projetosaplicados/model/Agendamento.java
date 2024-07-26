@@ -25,7 +25,9 @@ public class Agendamento {
     @OneToOne
     Servico servico;
     
+    @Data
     public static class DtoRequest{
+        String id;
         DiaSemana dia;
         Horario horario;
         Servico servico;
@@ -35,6 +37,7 @@ public class Agendamento {
         }
     }
 
+    @Data
     public static class DtoResponse{
         String id;
         DiaSemana dia;

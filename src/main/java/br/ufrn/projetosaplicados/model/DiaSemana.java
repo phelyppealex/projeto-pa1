@@ -21,7 +21,9 @@ public class DiaSemana {
     @OneToMany
     List<Horario> horarios;
 
+    @Data
     public static class DtoRequest {
+        private String id;
         private String dia;
         private boolean disponivel;
         
@@ -30,6 +32,7 @@ public class DiaSemana {
         }
     }
 
+    @Data
     public static class DtoResponse {
         private String id;
         private String dia;
