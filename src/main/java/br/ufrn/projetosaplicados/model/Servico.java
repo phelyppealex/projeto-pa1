@@ -18,6 +18,7 @@ public class Servico {
     private String id;
     private String nome;
     private double preco;
+    private String linkFoto;
 
     @OneToMany
     List<DiaSemana> dias;
@@ -26,6 +27,7 @@ public class Servico {
     public static class DtoRequest {
         private String nome;
         private double preco;
+        private String linkFoto;
         
         public static Servico convertToEntity(Servico.DtoRequest dto,  ModelMapper mapper){
             return mapper.map(dto, Servico.class);
@@ -37,6 +39,7 @@ public class Servico {
         private String id;
         private String nome;
         private double preco;
+        private String linkFoto;
         
         public static Servico.DtoResponse convertToDto(Servico servico,  ModelMapper mapper){
             return mapper.map(servico, Servico.DtoResponse.class);

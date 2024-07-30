@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.ufrn.projetosaplicados.model.DiaSemana;
 import br.ufrn.projetosaplicados.service.DiaService;
+import br.ufrn.projetosaplicados.model.Servico;
 
 
 @RestController
@@ -37,7 +38,7 @@ public class DiaController {
 
     @GetMapping("/{id}")
     public DiaSemana findById(@PathVariable String id) {
-        return this.service.findByID(id);
+        return this.service.findById(id);
     }
     
 

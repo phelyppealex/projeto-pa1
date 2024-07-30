@@ -1,6 +1,7 @@
 package br.ufrn.projetosaplicados.model;
 import org.modelmapper.ModelMapper;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -13,6 +14,7 @@ public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+    @Column(unique = true)
     private String hora;
 
     @Data

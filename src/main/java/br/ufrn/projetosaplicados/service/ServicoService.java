@@ -21,8 +21,7 @@ public class ServicoService {
     public Servico findById(String id){
         Optional<Servico> horario = this.repository.findById(id);
 
-        if(horario.isPresent())
-            return this.findById(id);
+        if(horario.isPresent()) return horario.get();
         
         throw new EntityNotFoundException();
     }

@@ -21,7 +21,7 @@ public class DiaService {
     }
 
     public void deleteById(String id){
-        findByID(id);
+        findById(id);
         this.repository.deleteById(id);
     }
 
@@ -29,11 +29,10 @@ public class DiaService {
         this.repository.delete(dia);
     }
 
-    public DiaSemana findByID(String id){
+    public DiaSemana findById(String id){
         Optional<DiaSemana> dia = this.repository.findById(id);
 
-        if(dia.isPresent())
-            return dia.get();
+        if(dia.isPresent()) return dia.get();
 
         throw new EntityNotFoundException();
     }
@@ -43,8 +42,6 @@ public class DiaService {
     }
 
     public void update(DiaSemana dia){
-        //var temp = findByID(dia.getId());
-        //delete(temp);
         save(dia);
     }
 }

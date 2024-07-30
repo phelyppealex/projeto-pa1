@@ -27,9 +27,9 @@ public class Agendamento {
     
     @Data
     public static class DtoRequest{
-        DiaSemana dia;
-        Horario horario;
-        Servico servico;
+        String dia;
+        String horario;
+        String servico;
 
         public static Agendamento convertToEntity(Agendamento.DtoRequest dto, ModelMapper mapper){
             return mapper.map(dto, Agendamento.class);

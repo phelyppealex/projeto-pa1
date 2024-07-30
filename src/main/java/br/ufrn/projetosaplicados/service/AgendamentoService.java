@@ -24,7 +24,7 @@ public class AgendamentoService {
     public Agendamento findById(String id){
         Optional<Agendamento> a = this.repository.findById(id);
 
-        if(a.isPresent())return this.findById(id);
+        if(a.isPresent()) return a.get();
 
         throw new EntityNotFoundException();
     }

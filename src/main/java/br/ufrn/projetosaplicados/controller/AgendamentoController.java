@@ -12,17 +12,29 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufrn.projetosaplicados.model.Agendamento;
+import br.ufrn.projetosaplicados.model.DiaSemana;
+import br.ufrn.projetosaplicados.model.Horario;
+import br.ufrn.projetosaplicados.model.Servico;
 import br.ufrn.projetosaplicados.service.AgendamentoService;
+import br.ufrn.projetosaplicados.service.DiaService;
+import br.ufrn.projetosaplicados.service.HorarioService;
+import br.ufrn.projetosaplicados.service.ServicoService;
 
 @RestController
 @RequestMapping("/agendamento")
 public class AgendamentoController {
     private AgendamentoService service;
+    private DiaService diaService;
+    private HorarioService horarioService;
+    private ServicoService servicoService;
     private ModelMapper mapper;
 
-    public AgendamentoController(AgendamentoService service, ModelMapper mapper){
+    public AgendamentoController(AgendamentoService service, DiaService diaService, HorarioService horarioService, ServicoService servicoService, ModelMapper mapper){
         this.mapper = mapper;
         this.service = service;
+        this.diaService = diaService;
+        this.horarioService = horarioService;
+        this.servicoService = servicoService;
     }
 
     @GetMapping()
@@ -35,7 +47,17 @@ public class AgendamentoController {
 
     @PostMapping
     public void saveAgendamento(@RequestBody Agendamento.DtoRequest a) {
-        Agendamento agendamento = Agendamento.DtoRequest.convertToEntity(a, mapper);
+        DiaSemana d = this.diaService.findById(a.getDia());
+        Horario h = this.horarioService.findById(a.getHorario());
+        Servico s = this.servicoService.findById(a.getServico());
+
+        System.out.println();
+        
+        Agendamento agendamento = new Agendamento();
+        agendamento.setDia(d);
+        agendamento.setHorario(h);
+        agendamento.setServico(s);
+
         this.service.save(agendamento);
     }
     
