@@ -1,5 +1,14 @@
 package br.ufrn.projetosaplicados.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
-import br.ufrn.projetosaplicados.model.Agendamento;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
-public interface AgendamentoRepository extends JpaRepository<Agendamento, String> {}
+import br.ufrn.projetosaplicados.model.Agendamento;
+import br.ufrn.projetosaplicados.model.Usuario;
+
+import java.util.List;
+
+
+public interface AgendamentoRepository extends JpaRepository<Agendamento, String> {
+    List<Agendamento> findByUsuario(Usuario usuario);
+}

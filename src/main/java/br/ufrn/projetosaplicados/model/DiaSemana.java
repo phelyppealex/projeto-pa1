@@ -19,7 +19,6 @@ public class DiaSemana {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
     
-    @Column(unique = true)
     private String dia;
     private boolean disponivel;
 

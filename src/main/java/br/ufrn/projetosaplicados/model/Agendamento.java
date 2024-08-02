@@ -17,13 +17,13 @@ public class Agendamento {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
-    @OneToOne
+    @ManyToOne
     DiaSemana dia;
 
-    @OneToOne
+    @ManyToOne
     Horario horario;
 
-    @OneToOne
+    @ManyToOne
     Servico servico;
 
     @ManyToOne

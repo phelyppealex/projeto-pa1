@@ -38,6 +38,19 @@ public class AgendamentoService {
         this.repository.save(a);
     }
 
+    public List<Agendamento> findByUsuario(String token){
+        String email = this.tokenService.validateToken(token);
+        var u = this.usuarioRepository.findByEmail(email);
+
+        if(u.isPresent()){
+            return this.repository.findByUsuario(
+                (Usuario) u.get()
+            );
+        }else{
+            throw new UsernameNotFoundException("Usuário "+ email +" não encontrado!");
+        }
+    }
+
     public void save(Agendamento.DtoRequest a){
         DiaSemana d = this.diaService.findById(a.getDia());
         Horario h = this.horarioService.findById(a.getHorario());
@@ -49,7 +62,6 @@ public class AgendamentoService {
 
         if(usuarioOp.isPresent()){
             u = (Usuario) usuarioOp.get();
-            System.out.println(u.getName());
         }else{
             throw new UsernameNotFoundException("Usuário "+ email +" não encontrado!");
         }

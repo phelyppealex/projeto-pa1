@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufrn.projetosaplicados.model.Agendamento;
+import br.ufrn.projetosaplicados.model.Usuario;
 import br.ufrn.projetosaplicados.service.AgendamentoService;
+
 
 @RestController
 @RequestMapping("/agendamento")
@@ -33,6 +35,11 @@ public class AgendamentoController {
         return a;
     }
 
+    @GetMapping("/meus-agendamentos/{token}")
+    public List<Agendamento> findAgendamentos(@PathVariable String token) {
+        return this.service.findByUsuario(token);
+    }
+    
     @PostMapping
     public void saveAgendamento(@RequestBody Agendamento.DtoRequest a) {
         this.service.save(a);

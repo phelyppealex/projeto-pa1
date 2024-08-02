@@ -14,7 +14,6 @@ public class Horario {
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-    @Column(unique = true)
     private String hora;
 
     @Data
