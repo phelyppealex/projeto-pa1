@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Data;
 
@@ -24,12 +25,16 @@ public class Agendamento {
 
     @OneToOne
     Servico servico;
+
+    @ManyToOne
+    Usuario usuario;
     
     @Data
     public static class DtoRequest{
         String dia;
         String horario;
         String servico;
+        String usuario;
 
         public static Agendamento convertToEntity(Agendamento.DtoRequest dto, ModelMapper mapper){
             return mapper.map(dto, Agendamento.class);
@@ -42,6 +47,7 @@ public class Agendamento {
         DiaSemana dia;
         Horario horario;
         Servico servico;
+        Usuario usuario;
 
         public static Agendamento.DtoResponse convertToDto(Agendamento agendamento, ModelMapper mapper){
             return mapper.map(agendamento, Agendamento.DtoResponse.class);

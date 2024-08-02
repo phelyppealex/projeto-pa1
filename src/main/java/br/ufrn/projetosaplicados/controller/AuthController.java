@@ -42,7 +42,6 @@ public class AuthController {
         return ResponseEntity.badRequest().build();
     }
 
-
     @PostMapping("/register")
     public ResponseEntity register(@RequestBody RegisterRequestDTO body){
         if(this.repository.findByEmail(body.email()).isPresent())
