@@ -1,7 +1,9 @@
 package br.ufrn.projetosaplicados.service;
 import java.util.List;
 import java.util.Optional;
+
 import org.springframework.stereotype.Service;
+
 import br.ufrn.projetosaplicados.model.Servico;
 import br.ufrn.projetosaplicados.repository.ServicoRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -27,7 +29,8 @@ public class ServicoService {
     }
 
     public List<Servico> findAll(){
-        return this.repository.findAll();
+        
+        return this.repository.findAllByOrderByNomeAsc();
     }
 
     public void deleteById(String id){
