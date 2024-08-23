@@ -36,6 +36,14 @@ public class DiaController {
         return dia;
     }
 
+    @GetMapping("/horarios-disp")
+    public List<DiaSemana.DtoResponse> findAllDiasHorariosAvailable() {
+        List<DiaSemana.DtoResponse> dia = this.service.findAvailableHorariosPerDiaSemana().stream().map(
+            day -> DiaSemana.DtoResponse.convertToDto(day, mapper)
+        ).toList();
+        return dia;
+    }
+
     @GetMapping("/{id}")
     public DiaSemana findById(@PathVariable String id) {
         return this.service.findById(id);
