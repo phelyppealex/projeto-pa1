@@ -48,41 +48,45 @@ public class DiaService {
     }
 
     public List<DiaSemana> findAvailableHorariosPerDiaSemana(){
-        List<Object[]> result = this.repository.findAvailableHorariosPerDiaSemana();
+        // Resultado de uma SQL injetada
+        var result = this.repository.findAvailableHorariosPerDiaSemana();
 
-        List<String> diaIds = new ArrayList<String>();
+        // Lista que ao final será retornada
+        var dias = new ArrayList<DiaSemana>();
 
+        // Salvará os IDs que já foram adicionados a lista final
+        var diaIds = new ArrayList<String>();
+        
+        // Percorre o resultado da SQL
         for(Object[] linha: result){
-            if(!diaIds.contains(linha[0])){
-                diaIds.add(linha[0].toString());
-            }
-        }
+            // Verifica se o objeto de dia referente ao ID contido na linda do result já foi criado na lista final
+            if(!diaIds.contains((String) linha[0])){
+                var horario = new Horario();
+                horario.setId(linha[2].toString());
+                horario.setHora(linha[3].toString());
+                
+                var dia = new DiaSemana();
+                dia.setId(linha[0].toString());
+                dia.setDia(linha[1].toString());
+                dia.setHorarios(new ArrayList<>());
+                dia.getHorarios().add(horario);
 
-        List<DiaSemana> dias = new ArrayList<DiaSemana>();
+                // Lista final
+                dias.add(dia);
+                // Lista de IDs
+                diaIds.add(dia.getId());
+            }else{
+                for(DiaSemana dia: dias){
+                    if(dia.getId() .equals(linha[0].toString())){
+                        var horario = new Horario();
+                        horario.setId(linha[2].toString());
+                        horario.setHora(linha[3].toString());
 
-        for(String idDia: diaIds){
-            DiaSemana d = new DiaSemana();
-            d.setId(idDia);
-            for(Object[] linha: result){
-                Horario h;
-                if(linha[0].equals(idDia)){
-                    h = new Horario();
-                    d.setDia(linha[1].toString());
-
-                    h.setId(linha[2].toString());
-                    h.setHora(linha[3].toString());
-                    
-                    List<Horario> listaHorarios;
-                    if(d.getHorarios() != null){
-                        listaHorarios = d.getHorarios();
-                        listaHorarios.add(h);
-                    }else{
-                        listaHorarios = new ArrayList<Horario>();
+                        dia.getHorarios().add(horario);
+                        break;
                     }
-                    d.setHorarios(listaHorarios);
                 }
             }
-            dias.add(d);
         }
 
         return dias;
