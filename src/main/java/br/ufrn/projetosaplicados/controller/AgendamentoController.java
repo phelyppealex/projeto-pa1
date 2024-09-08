@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.ufrn.projetosaplicados.model.Agendamento;
-import br.ufrn.projetosaplicados.model.Usuario;
 import br.ufrn.projetosaplicados.service.AgendamentoService;
 
 
 @RestController
 @RequestMapping("/agendamento")
 public class AgendamentoController {
-    private AgendamentoService service;
-    private ModelMapper mapper;
+    private final AgendamentoService service;
+    private final ModelMapper mapper;
 
     public AgendamentoController(AgendamentoService service, ModelMapper mapper){
         this.mapper = mapper;

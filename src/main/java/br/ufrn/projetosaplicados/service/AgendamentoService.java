@@ -19,11 +19,11 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class AgendamentoService {
     AgendamentoRepository repository;
-    private DiaService diaService;
-    private HorarioService horarioService;
-    private ServicoService servicoService;
-    private UsuarioRepository usuarioRepository;
-    private TokenService tokenService;
+    private final DiaService diaService;
+    private final HorarioService horarioService;
+    private final ServicoService servicoService;
+    private final UsuarioRepository usuarioRepository;
+    private final TokenService tokenService;
 
     public AgendamentoService(AgendamentoRepository aRepo, DiaService diaService, HorarioService horarioService, ServicoService servicoService, UsuarioRepository usuarioRepository, TokenService tokenService){
         this.repository = aRepo;
@@ -58,7 +58,7 @@ public class AgendamentoService {
         Usuario u;
 
         String email = this.tokenService.validateToken(a.getUsuario());
-        Optional usuarioOp = this.usuarioRepository.findByEmail(email);
+        Optional<Usuario> usuarioOp = this.usuarioRepository.findByEmail(email);
 
         if(usuarioOp.isPresent()){
             u = (Usuario) usuarioOp.get();

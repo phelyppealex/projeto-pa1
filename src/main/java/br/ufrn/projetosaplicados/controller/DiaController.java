@@ -13,15 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.ufrn.projetosaplicados.model.DiaSemana;
 import br.ufrn.projetosaplicados.service.DiaService;
-import br.ufrn.projetosaplicados.model.Servico;
-
 
 @RestController
 @RequestMapping("/dia")
 public class DiaController {
 
-    private DiaService service;
-    private ModelMapper mapper;
+    private final DiaService service;
+    private final ModelMapper mapper;
 
     public DiaController(DiaService service, ModelMapper mapper){
         this.mapper = mapper;

@@ -1,7 +1,5 @@
 package br.ufrn.projetosaplicados.controller;
 
-import java.util.Optional;
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +26,7 @@ public class AuthController {
     private final TokenService tokenService;
 
     @PostMapping("/login")
-    public ResponseEntity login(@RequestBody LoginRequestDTO body){
+    public ResponseEntity<ResponseDTO> login(@RequestBody LoginRequestDTO body){
         Usuario user = this.repository.findByEmail(
             body.email()
         ).orElseThrow(
@@ -43,7 +41,7 @@ public class AuthController {
     }
 
     @PostMapping("/register")
-    public ResponseEntity register(@RequestBody RegisterRequestDTO body){
+    public ResponseEntity<Object> register(@RequestBody RegisterRequestDTO body){
         if(this.repository.findByEmail(body.email()).isPresent())
             return ResponseEntity.badRequest().build();
         
